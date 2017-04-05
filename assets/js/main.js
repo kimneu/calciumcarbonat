@@ -52,6 +52,7 @@ $(document).ready(function() {
 
     $('#about-link-l').click(function() {
         $('#about-container-l').show();
+        $('.secondaries').hide();
         $('#main').hide();
     });
 
