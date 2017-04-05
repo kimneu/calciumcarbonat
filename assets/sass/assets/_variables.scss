@@ -1,0 +1,15 @@
+$font-stack: "Arial", sans-serif;
+$font-color: black;
+$space01: 20px;
+$fliesstext: 1.2rem; //fliesstext und menu text grösse
+$slider-img-height: 95; // in %
+
+
+@mixin flexbox($d, $w, $j, $a) {
+  display: flex;
+  flex-direction: $d;
+  flex-wrap: $w;
+  justify-content: $j;
+  align-items: $a;
+}
+// @include flexbox(direction, wrap, justify, align)

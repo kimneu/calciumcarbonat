@@ -1,0 +1,106 @@
+/*
+ *  SimpleBar.js - v1.1.9
+ *  Scrollbars, simpler.
+ *  https://grsmto.github.io/simplebar/
+ *
+ *  Made by Adrien Grsmto from a fork by Jonathan Nicol
+ *  Under MIT License
+ */
+
+.simplebar, [data-simplebar-direction] {
+    position: relative;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch; /* Trigger native scrolling for mobile, if not supported, plugin is used. */
+}
+
+.simplebar .simplebar-scroll-content,
+[data-simplebar-direction] .simplebar-scroll-content {
+    overflow-y: scroll;
+    overflow-x: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0px;
+    bottom: 0px;
+    -ms-overflow-style: none; /* hide browser scrollbar on IE10+ */
+}
+
+/* hide browser scrollbar on Webkit (Safari & Chrome) */
+.simplebar-scroll-content::-webkit-scrollbar {
+    display: none;
+}
+
+[data-simplebar-direction="horizontal"] .simplebar-scroll-content,
+.simplebar.horizontal .simplebar-scroll-content {
+    overflow-x: scroll;
+    overflow-y: auto;
+}
+
+// eigentlich verkleindern, bar aber "fake" (pseudoelemente) erhöhen mit border damit buttons in track
+.simplebar-track {
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    background-color: #F2F2F2;
+    z-index: 99;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 20px;
+    width: 20px;
+    &:before{
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -1px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        border-bottom: 0px solid transparent;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: -1px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        border-top: 0px solid transparent;
+    }
+}
+
+.simplebar-up,
+.simplebar-down {
+  z-index: 99;
+  position: absolute;
+  width:20px;
+  height:20px;
+  border: 0px solid #000000;
+  background-color: #BFBFBF;
+  box-shadow: inset 1.25px 1.25px 0px 0px #F2F2F2, inset -2.25px -2.25px 0 0 #828282;
+}
+
+.simplebar-up{
+  top:-19px;
+  border-bottom: 1px solid #000000;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2020.1.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2011%2011%22%20style%3D%22enable-background%3Anew%200%200%2011%2011%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cg%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%223.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%224.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%224.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.4%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.4%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.1%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%224.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%224.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.3%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.3%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.6%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%224.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%225.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%225.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%225.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%225.3%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%225.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%225.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%225.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%225.9%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%225.9%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.9%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.9%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%225.9%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%226.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%226.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%226.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%226.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%226.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.7%22%20y%3D%226.6%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226%22%20y%3D%226.6%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%226.6%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%226.6%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.7%22%20y%3D%226.6%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%3C/g%3E%0A%3C/svg%3E%0A');
+}
+
+.simplebar-down {
+  bottom:-19px;
+  border-top: 1px solid #000000;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2020.1.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2011%2011%22%20style%3D%22enable-background%3Anew%200%200%2011%2011%3B%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cg%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%227.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%226.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%226.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%226.7%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%226.4%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%226.4%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%226.4%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.2%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.2%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%226.6%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%226.4%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%226.4%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.4%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.4%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.1%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%226.1%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%225.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%225.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%225.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%225.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%225.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%225.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%225.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%225.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%224.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%224.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%224.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.8%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%224.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%224.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%224.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.5%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.9%22%20y%3D%224.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%224.8%22%20y%3D%224.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.6%22%20y%3D%224.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.4%22%20y%3D%224.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%09%3Crect%20x%3D%225.1%22%20y%3D%224.2%22%20width%3D%220.3%22%20height%3D%220.3%22/%3E%0A%3C/g%3E%0A%3C/svg%3E%0A');
+}
+
+.simplebar-track .simplebar-scrollbar {
+    position: absolute;
+    width: 20px;
+    background-color: #BFBFBF;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    box-shadow: inset 1.25px 1.25px 0px 0px #F2F2F2, inset -2.25px -2.25px 0 0 #828282;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    cursor:pointer;
+    z-index:99;
+}
