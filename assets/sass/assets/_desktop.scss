@@ -2,29 +2,10 @@
 
 /* DESKTOP VERSION */
 @media screen and (min-width: 768px){
-
-  #welcome{
-    display:none;
-  }
-  video#videobg {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: 100;
-  transform: translateX(-50%) translateY(-50%);
-  //background: url('../../video/vlcsnap-2016-12-12-16h15m44s008.png') no-repeat;
-  background-size: cover;
-  transition: 1s opacity;
-  }
-
-  #menu {
+  .menu {
     padding: $space01 $space01;
     font-size: $fliesstext;
-    #about-link-l {
+    .about-link {
       position: relative;
     }
     p:hover,a:hover{
@@ -33,7 +14,7 @@
     }
   }
 
-  #contact {
+  .contact {
     bottom: 65px;
     left: 65px;
   }
@@ -42,11 +23,7 @@
     display:none;
   }
 
-  #about-link-s{
-    display:none;
-  }
-
-  .intro, #about-container-l {
+  .intro, #about-container {
     position: fixed;
     top: $space01;
     left: $space01;
@@ -56,7 +33,7 @@
     }
   }
 
-  #about-container-l {
+  #about-container {
     width: 50%;
   }
 
@@ -76,14 +53,6 @@
       text-decoration: underline;
       cursor: pointer;;
     }
-  }
-
-  #secondary {
-    display: table;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    z-index: 10;
   }
 
   .phase-text {
@@ -114,7 +83,7 @@
   .unslider-carousel{
     li{
       text-align: center;
-      img,video{
+      img{
         width: auto;
         height: #{$slider-img-height}vh;
         margin-top: 20px;
@@ -148,4 +117,18 @@
       }
   }
 
+}
+
+.center{
+    width: 100vw;
+    height: 100vh;
+    @include flexbox(row, wrap, center, center);
+
+    .video{
+        width: 60%;
+    }
+}
+.video-wrapper{
+    @include paddinghack(100%, 16, 9, 'iframe');
+    margin: 0 auto;
 }

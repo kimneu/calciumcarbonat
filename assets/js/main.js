@@ -1,12 +1,9 @@
 $(document).ready(function() {
 
-    $('#about-container-l').hide();
-    $('#about-container-s').hide();
+    $('body:not(#index)').append('<a href="index.html" class="close"></a>');
 
-    for (i = 0; i < 24; i++) {
-        $('#phase0' + i).hide();
-        $('#phase0' + i).append('<div class="close"></div>');
-    }
+    $('body').append('<footer><div class="menu"><a href="about.html" class="about-link"><p>about</p></a><p class="contact"><br><a href="mailto:info@archiv-kalk.ch" target="_blank">info@archiv-kalk.ch</a></p></div></footer>');
+
 
     $('#welcome').click(function() {
         $(this).fadeOut(500);
@@ -14,72 +11,6 @@ $(document).ready(function() {
     setTimeout(function() {
         $('#welcome').fadeOut(800);
     }, 1000);
-
-
-    $('#close-welcome').click(function() {
-        $('#welcome').hide();
-        $('#welcome2').hide();
-        $('#videobg').trigger('pause');
-    });
-
-    $('#index00').click(function() {
-        $('#phase00').show();
-        $('#main').toggle();
-    });
-
-    $('#index01').click(function() {
-        $('#phase01').show();
-        $('#main').toggle();
-    });
-
-    $('#index02').click(function() {
-        $('#phase02').show();
-        $('#main').toggle();
-    });
-
-    $('#index03').click(function() {
-        $('#phase03').show();
-        $('#main').toggle();
-    });
-    $('#index04').click(function() {
-        $('#phase04').show();
-        $('#main').toggle();
-    });
-    $('#index05').click(function() {
-        $('#phase05').show();
-        $('#main').toggle();
-    });
-
-    $('#about-link-l').click(function() {
-        $('#about-container-l').show();
-        $('.secondaries').hide();
-        $('#main').hide();
-    });
-
-    $('#close-about-l').click(function() {
-        $('#about-container-l').hide();
-        $('#main').show();
-    });
-
-    $('#about-link-s').click(function() {
-        $('#about-container-s').show();
-        $('#mobile').hide();
-    });
-
-    $('#close-about-s').click(function() {
-        $('#about-container-s').hide();
-        $('#mobile').show();
-    });
-
-    $('.close').click(function() {
-        $('#phase00').hide();
-        $('#phase01').hide();
-        $('#phase02').hide();
-        $('#phase03').hide();
-        $('#phase04').hide();
-        $('#phase05').hide();
-        $('#main').toggle();
-    });
 
     var slider = $('.my-slider').unslider();
 
@@ -98,10 +29,10 @@ $(document).ready(function() {
 
     $(".prev").click(function() {
         slider.unslider('prev');
-      });
-      $(".next").click(function() {
+    });
+    $(".next").click(function() {
         slider.unslider('next');
-      });
+    });
 
     /* ScrollBar Plugin */
     $('.simplebar-up').on('click', function(e) {
@@ -119,11 +50,11 @@ $(document).ready(function() {
     $('.simplebar-track').append('<button class="simplebar-down"></button>');
 
     // scroll to plugin jetzt neu drin, mit dem buttons
-    $(".simplebar-down").click(function () {
-        $('.simplebar-scroll-content').scrollTo( '+=50px', 500 );
+    $(".simplebar-down").click(function() {
+        $('.simplebar-scroll-content').scrollTo('+=50px', 500);
     });
 
-    $(".simplebar-up").click(function () {
-        $('.simplebar-scroll-content').scrollTo( '-=50px', 500 );
+    $(".simplebar-up").click(function() {
+        $('.simplebar-scroll-content').scrollTo('-=50px', 500);
     });
 });

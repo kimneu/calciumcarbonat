@@ -5,11 +5,31 @@ $fliesstext: 1.2rem; //fliesstext und menu text grösse
 $slider-img-height: 95; // in %
 
 
-@mixin flexbox($d, $w, $j, $a) {
+@mixin flexbox($d, $w, $j, $a) { // @include flexbox(direction, wrap, justify, align)
   display: flex;
   flex-direction: $d;
   flex-wrap: $w;
   justify-content: $j;
   align-items: $a;
 }
-// @include flexbox(direction, wrap, justify, align)
+
+// paddinghack
+@mixin paddinghack($cw, $rw, $rh, $c:null) {
+    position: relative;
+    width: $cw;
+    height: 0;
+    padding: (($rh / $rw) * $cw) 0 0 0;
+    display: block;
+    @if $c != null {
+        #{$c} {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+// @include paddinghack(width, ratiowidth, ratioheight, (childelement))

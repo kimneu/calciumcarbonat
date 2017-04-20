@@ -3,9 +3,6 @@
 /* MOBILE VERSION */
 @media screen and (max-width: 767px){
 
-  #welcome2{
-    display:none;
-  }
   #mobile{
     position:absolute;
     img{
@@ -14,30 +11,20 @@
       height:auto;
     }
   }
-  #menu{
+  .menu{
     padding-left:0px;
     font-size:1rem;
-    #about-link-s {
+    .about-link {
       position: relative;
       bottom: 10px;
       left: 10px;
     }
-    #contact {
+    .contact {
       bottom: 65px;
       left: 45px;
     }
   }
   #main{
-    display:none;
-  }
-  #about-container-l,#about-container-s{
-    overflow: hidden;
-    width: 75%;
-    margin-top:$space01;
-    margin-left:$space01;
-  }
-
-  #about-link-l{
     display:none;
   }
 
