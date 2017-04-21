@@ -123,9 +123,8 @@
     width: 100vw;
     height: 100vh;
     @include flexbox(row, wrap, center, center);
-
     .video{
-        width: 60%;
+      //  width: 60%;
     }
 }
 .video-wrapper{
