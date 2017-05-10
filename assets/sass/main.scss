@@ -1,9 +1,9 @@
-  @import "assets/variables.scss";
-  @import "assets/mobile.scss";
-  @import "assets/desktop.scss";
-  @import "assets/tablet.scss";
-  @import "assets/simplebar";
-  @import "assets/unslider";
+  @import 'assets/variables';
+  @import 'assets/mobile';
+  @import 'assets/desktop';
+  @import 'assets/tablet';
+  @import 'assets/simplebar';
+  @import 'assets/unslider';
 
   html {
     font: 100% $font-stack;
