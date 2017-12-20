@@ -1,11 +1,18 @@
 import React from 'react'
-import { getSiteProps } from 'react-static'
+import { getSiteProps, Link } from 'react-static'
 //
-import logoImg from '../logo.png'
 
-export default getSiteProps(() => (
+export default getSiteProps(({ projects }) => (
   <div>
-    <h1 style={{ textAlign: 'center' }}>Welcome to</h1>
-    <img src={logoImg} alt="" />
+    <p>KALK, an open minded project for material art- and objects of use.
+<br />Diversity of phases already done:</p>
+<br />
+<ul>
+  {projects.map(post => (
+    <li key={post.id}>
+      <Link to={`/blog/post/${post.id}/`}>{post.title}</Link>
+    </li>
+  ))}
+</ul>
   </div>
 ))

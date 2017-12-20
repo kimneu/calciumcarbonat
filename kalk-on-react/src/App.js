@@ -18,16 +18,20 @@ injectGlobal`
 const AppStyles = styled.div`
   a {
     text-decoration: none;
-    color: #108db8;
-    font-weight: bold;
+    color: black;
+    }
   }
 
   nav {
     width: 100%;
-    background: #108db8;
+    position: fixed;
+    bottom:0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
 
     a {
-      color: white;
+      color: black;
       padding: 1rem;
       display: inline-block;
     }
@@ -48,7 +52,6 @@ export default () => (
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
       </nav>
       <div className="content">
         <Routes />

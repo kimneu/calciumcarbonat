@@ -12,11 +12,21 @@ export default {
   }),
   getRoutes: async() => {
     const {
-      data: posts
-    } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      data: projects
+    } = await axios.get('src/posts.json')
     return [{
         path: '/',
         component: 'src/containers/Home',
+        getProps: () => ({
+          projects,
+        }),
+        children: projects.map(project => ({
+          path: `/post/${post.id}`,
+          component: 'src/containers/Post',
+          getProps: () => ({
+            projects,
+          }),
+        })),
       },
       {
         path: '/about',
@@ -25,16 +35,6 @@ export default {
       {
         path: '/blog',
         component: 'src/containers/Blog',
-        getProps: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          component: 'src/containers/Post',
-          getProps: () => ({
-            post,
-          }),
-        })),
       },
       {
         is404: true,
@@ -58,22 +58,16 @@ export default {
         renderMeta
       } = this.props
 
-      return ( <
-        Html >
-        <
-        Head >
-        <
-        meta charSet = "UTF-8" / >
-        <
-        meta name = "viewport"
-        content = "width=device-width, initial-scale=1" / > {
-          renderMeta.styleTags
-        } <
-        /Head> <
-        Body > {
-          children
-        } < /Body> <
-        /Html>
+      return (
+        <Html>
+        <Head>
+        <meta charSet = "UTF-8" / >
+        <meta name = "viewport" content = "width=device-width, initial-scale=1" / >
+        {renderMeta.styleTags
+        }
+      </Head>
+      <Body>{children}</Body>
+      </Html>
       )
     }
   },
