@@ -1,61 +1,84 @@
-import React from 'react'
-import { Router, Link } from 'react-static'
-import styled, { injectGlobal } from 'styled-components'
-//
-import Routes from 'react-static-routes'
+// @flow
+import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+import {auth, provider, providerGoogle} from './components/firebase/index.js'
+import Home from './components/home/index.js'
+import About from './components/about/index.js'
+import logo from './logo.svg';
 
-injectGlobal`
-  body {
-    font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
-      'Lucida Grande', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-  }
-`
+import 'semantic-ui/dist/components/reset.css'
+import 'semantic-ui/dist/semantic.min.css'
+import 'semantic-ui/dist/components/icon.css'
+import 'semantic-ui/dist/components/segment.css'
+import 'semantic-ui/dist/components/button.css'
+import 'semantic-ui/dist/components/menu.css'
+// import './App.css';
 
-const AppStyles = styled.div`
-  a {
-    text-decoration: none;
-    color: black;
+type Props = {
+    /* */
+}
+
+type State = {
+    user: string,
+    activeLink: string,
+    loginStatus: number
+}
+
+class App extends Component<Props, State> {
+    state = {
+        activeLink: 'archive'
     }
-  }
 
-  nav {
-    width: 100%;
-    position: fixed;
-    bottom:0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
 
-    a {
-      color: black;
-      padding: 1rem;
-      display: inline-block;
+    render() {
+        const navLinks = [
+            ['archive','/'],
+            ['about','/about']
+        ]
+
+        return (
+            <div className='App'>
+                    <img src={logo} className='App-logo' alt='logo' />
+                <Router>
+                    <div>
+                        <div>
+                            <Route
+                                path="/About/"
+                                render={(props) => <About {...props} />}
+                            />
+                            <Route
+                                exact
+                                path="/"
+                                render={(state) => <Home user={this.state.user ? this.state.user.displayName : 'Stranger'} />}
+                            />
+                        </div>
+                        <div className="ui secondary pointing menu">
+                            {navLinks.map((navPoint) => {
+                                return(
+                                    <Link
+                                        to={navPoint[1]}
+                                        key={navPoint[1]}
+                                    >
+                                        <div
+                                            onClick={() => this.setState({activeLink: navPoint[0]})}
+                                            className={`item ${this.state.activeLink === navPoint[0] ? 'active' : ''}`}
+                                        >
+                                            {navPoint[0]}
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+
+                        </div>
+                    </div>
+                </Router>
+            </div>
+        );
     }
-  }
+}
 
-  .content {
-    padding: 1rem;
-  }
-
-  img {
-    max-width: 100%;
-  }
-`
-
-export default () => (
-  <Router>
-    <AppStyles>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav>
-      <div className="content">
-        <Routes />
-      </div>
-    </AppStyles>
-  </Router>
-)
+export default App;

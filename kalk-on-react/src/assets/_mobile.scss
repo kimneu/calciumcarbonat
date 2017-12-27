@@ -1,0 +1,31 @@
+  @import "variables.scss";
+
+/* MOBILE VERSION */
+@media screen and (max-width: 767px){
+
+  #mobile{
+    position:absolute;
+    img{
+      margin:auto;
+      width:100%;
+      height:auto;
+    }
+  }
+  .menu{
+    padding-left:0px;
+    font-size:1rem;
+    .about-link {
+      position: relative;
+      bottom: 10px;
+      left: 10px;
+    }
+    .contact {
+      bottom: 65px;
+      left: 45px;
+    }
+  }
+  #main{
+    display:none;
+  }
+
+}
