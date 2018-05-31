@@ -5,7 +5,7 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import {auth, provider, providerGoogle} from './components/firebase/index.js'
+// import {auth, provider, providerGoogle} from './components/firebase/index.js'
 import Home from './components/home/index.js'
 import About from './components/about/index.js'
 import logo from './logo.svg';
@@ -16,7 +16,7 @@ import 'semantic-ui/dist/components/icon.css'
 import 'semantic-ui/dist/components/segment.css'
 import 'semantic-ui/dist/components/button.css'
 import 'semantic-ui/dist/components/menu.css'
-// import './App.css';
+import './App.css';
 
 type Props = {
     /* */
@@ -53,7 +53,7 @@ class App extends Component<Props, State> {
                             <Route
                                 exact
                                 path="/"
-                                render={(state) => <Home user={this.state.user ? this.state.user.displayName : 'Stranger'} />}
+                                render={(state) => <Home />}
                             />
                         </div>
                         <div className="ui secondary pointing menu">
